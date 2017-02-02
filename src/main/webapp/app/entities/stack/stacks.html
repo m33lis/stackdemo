@@ -1,0 +1,37 @@
+<div>
+    <div class="container-fluid">
+        <div class="row">
+            <button class="btn btn-primary" ng-click="vm.logout()" >
+                <span class="glyphicon glyphicon-log-out"></span>
+            </button>
+            <button class="btn btn-primary" ng-click="vm.clear()" >
+                <span class="glyphicon glyphicon-repeat"></span>
+            </button>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+            <tr>
+                <th class="text-center"><input type="text" ng-model="vm.stack.val" class="val" ng-keyup="$event.keyCode == 13 && vm.save()" /></th>            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="stack in vm.stacks | orderBy: '-id' track by stack.id">
+                <td class="text-center">
+                    <div data-drag="true" jqyoui-draggable>
+                        {{stack.val}} / {{stack.session}}
+                        <div class="btn-group flex-btn-group-container" ng-if="$index==0">
+                            <button ui-sref="stacks.delete({id:stack.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

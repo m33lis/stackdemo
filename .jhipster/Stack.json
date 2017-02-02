@@ -1,0 +1,19 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "val",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "session",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170202093905",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "stack",
+    "pagination": "no"
+}
