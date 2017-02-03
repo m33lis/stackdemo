@@ -14,8 +14,7 @@
         <input type="number"
                class="stack-input"
                ng-model="vm.stack.val"
-               ng-keyup="$event.keyCode == 13 && vm.save()" />
-
+               ng-keyup="$event.keyCode == 13 && vm.save()"/><button ng-click="vm.save()">Add</button>
         <div class="stack-item-container" ng-repeat="stack in vm.stacks | orderBy: '-id' track by stack.id">
             <div class="stack-item" data-drag="true" jqyoui-draggable="{onStop:'vm.dragStopCallback(event)'}" ng-if="$index==0">
                 {{stack.val}}
