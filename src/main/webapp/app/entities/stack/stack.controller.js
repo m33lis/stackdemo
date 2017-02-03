@@ -71,13 +71,14 @@
             _.each(vm.stacks, function (stack) {
                 Stack.delete({id: stack.id});
             });
-            $state.go('stacks', null, { reload: 'stacks' });
+            $timeout(function () {
+                $state.go('stacks', null, { reload: 'stacks' });
+            }, 100);
         }
 
         function dragStopCallback() {
             console.log("Dragging stopped, deleting last one...");
-            Stack.delete({id: _.last(vm.stacks).id});
-            $state.go('stacks', null, { reload: 'stacks' });
+            $state.go('stacks.delete', {id: _.last(vm.stacks).id});
         }
     }
 })();
