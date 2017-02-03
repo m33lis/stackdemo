@@ -19,18 +19,21 @@ spring:
             enabled: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:postgresql://localhost:5432/StackService
+        url: jdbc:h2:mem:stackservice;DB_CLOSE_DELAY=-1
         name:
         username: StackService
         password:
+    h2:
+        console:
+            enabled: false
     jpa:
-        database-platform: ee.goodsandservices.stackservice.domain.util.FixedPostgreSQL82Dialect
-        database: POSTGRESQL
-        show-sql: false
+        database-platform: ee.goodsandservices.stackservice.domain.util.FixedH2Dialect
+        database: H2
+        show-sql: true
         properties:
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false
-            hibernate.generate_statistics: false
+            hibernate.generate_statistics: true
     mail:
         host: localhost
         port: 25

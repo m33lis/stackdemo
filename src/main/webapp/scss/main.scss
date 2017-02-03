@@ -303,7 +303,7 @@ entity tables helpers
 }
 
 /* ==========================================================================
-entity detail page css
+Stacks
 ========================================================================== */
 .dl-horizontal.jh-entity-details > {
     dd {
@@ -320,6 +320,48 @@ entity detail page css
             border-bottom: 1px solid #eee;
             padding-left: 180px;
             margin-left: 0;
+        }
+    }
+}
+
+.bottom-text {
+    font-size: 8px;
+    font-style: italic;
+}
+
+.stack-list {
+    padding: 4px;
+
+    .stack-input {
+        left:48%;
+        margin-bottom: 10px;
+        position: relative;
+        width: 70px;
+    }
+
+    .stack-input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    .stack-input::-webkit-inner-spin-button {
+        margin: 0;
+        -webkit-appearance: none;
+    }
+
+    .stack-item-container {
+        .stack-item {
+            border: 1px solid black;
+            border-radius: 2px;
+            font-size: 16px;
+            font-weight: bold;
+            left: 48%;
+            margin-bottom: 10px;
+            padding: 5px;
+            position: relative;
+            text-align: center;
+            vertical-align: center;
+            width: 70px;
         }
     }
 }
