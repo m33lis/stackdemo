@@ -112,7 +112,6 @@ public class StackResource {
     public List<Stack> getAllBySession(@PathVariable String session) {
         log.debug("REST request to get Stacks with session : {}", session);
         return stackService.findAllBySession(session);
-
     }
 
     /**
@@ -125,7 +124,10 @@ public class StackResource {
     @Timed
     public ResponseEntity<Void> deleteStack(@PathVariable Long id) {
         log.debug("REST request to delete Stack : {}", id);
-        stackService.delete(id);
+        Stack st = stackService.findOne(id);
+        if (st.getId() != null) {
+            stackService.delete(id);
+        }
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("stack", id.toString())).build();
     }
 

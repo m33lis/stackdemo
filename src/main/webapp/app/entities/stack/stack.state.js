@@ -28,9 +28,9 @@
                 }
             },
             resolve: {
-                stacks: ['$stateParams', 'Stacks', 'Stack',  function ($stateParams, Stacks, Stack) {
+                stacks: ['$stateParams', 'Stacks',  function ($stateParams, Stacks) {
                     if ($stateParams.session) {
-                        return Stacks.get({session: $stateParams.session}).$promise;
+                        return Stacks.get({session: $stateParams.session});
                     }
                 }],
                 session: ['$stateParams', function ($stateParams) {
@@ -44,9 +44,13 @@
             data: {
                 authorities: ['ROLE_USER']
             },
-            onEnter: ['$stateParams', '$state', 'Stack', function($stateParams, $state, Stack) {
+            onEnter: ['$stateParams', '$state', 'Stack', '$timeout', function($stateParams, $state, Stack, $timeout) {
                 Stack.delete({id: $stateParams.id});
-                $state.go('stacks', null, { reload: 'stacks' });
+                $timeout(function () {
+                    // ze ugly hack :/
+                    $state.go('stacks', null, {reload: 'stacks' });
+                }, 100);
+
             }]
         })
     }

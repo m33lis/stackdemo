@@ -5,46 +5,49 @@
         .module('stackServiceApp')
         .controller('StackController', StackController);
 
-    StackController.$inject = ['$timeout', '$scope', '$state', 'Stack', 'Stacks', 'stacks',  'orderByFilter', 'Auth', 'session', 'Sessions', '$q'];
+    StackController.$inject = ['$timeout', '$scope', '$state', 'Stack', 'stacks', 'orderByFilter', 'Auth', 'session', 'Sessions'];
 
-    function StackController ($timeout, $scope, $state, Stack, Stacks, stacks, orderBy, Auth, session, Sessions, $q) {
+    function StackController ($timeout, $scope, $state, Stack, stacks, orderBy, Auth, session, Sessions) {
         var vm = this;
 
-        vm.stacks = stacks;
-        vm.stack = {};
+        console.log("Stack Controller reloaded");
 
-        if (session && stacks) {
-            vm.stack['session'] = session;
-        } else {
-            Sessions.getAll(function (res) {
-                vm.stack['session'] = _.last(res).series;
-                $state.go('stacks', {session: vm.stack.session});
-            });
-        }
+        vm.stack = {};
+        vm.stacks = stacks;
+
 
         vm.account = null;
 
         vm.save = save;
         vm.clear = clear;
         vm.logout = logout;
+        vm.dragStopCallback = dragStopCallback;
 
-        loadAll();
+        onControllerLoad();
 
         $timeout(function (){
-            angular.element('input.val').focus();
+            angular.element('input.stack-input').focus();
         });
 
-        function loadAll() {
-            /*Stacks.get(function(result) {
-                vm.stacks = result;
-            });
-*/
-            console.log("CURRENT SESSION: ", vm.stack.session);
+        function onControllerLoad() {
+            console.log("StackController loaded.");
+
+            if (session) {
+                vm.stack['session'] = session;
+            } else {
+                Sessions.getAll(function (res) {
+                    vm.stack['session'] = _.last(res).series;
+                    $state.go('stacks', {session: vm.stack.session});
+                });
+            }
+
         }
 
         function save () {
-            vm.isSaving = true;
-            Stack.save(vm.stack, onSaveSuccess, onSaveError);
+            if (vm.stack.val > 0) {
+                vm.isSaving = true;
+                Stack.save(vm.stack, onSaveSuccess, onSaveError);
+            }
         }
 
         function onSaveSuccess (result) {
@@ -58,6 +61,8 @@
         }
 
         function logout() {
+            // cleanup first
+            clear();
             Auth.logout();
             $state.go('home');
         }
@@ -69,6 +74,10 @@
             $state.go('stacks', null, { reload: 'stacks' });
         }
 
-
+        function dragStopCallback() {
+            console.log("Dragging stopped, deleting last one...");
+            Stack.delete({id: _.last(vm.stacks).id});
+            $state.go('stacks', null, { reload: 'stacks' });
+        }
     }
 })();
