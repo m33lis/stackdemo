@@ -53,7 +53,10 @@
         function onSaveSuccess (result) {
             $scope.$emit('stackServiceApp:stackUpdate', result);
             vm.isSaving = false;
-            $state.go('stacks', null, { reload: 'stacks' });
+
+            $timeout(function () {
+                $state.go('stacks', null, { reload: 'stacks' });
+            }, 100)
         }
 
         function onSaveError () {
