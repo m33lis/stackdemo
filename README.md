@@ -1,5 +1,9 @@
 # StackService
 
+Stack Demo exercise for FOB Solutions. User can push numbers to a stack by entering them via the input box (by either pressing enter on theyr keyboard or "Add" button if they are on a touch-enabled device), pop the top number by draging and droping it. Stack can be emptied by presing "refresh" button, logout ends the session and deletes the stack.
+
+Multiple sessions from different browsers and locations can be ran concurrently.
+
 This application was generated using JHipster 3.12.2, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v3.12.2](https://jhipster.github.io/documentation-archive/v3.12.2).
 
 ## Development
@@ -42,8 +46,6 @@ To ensure everything worked, run:
 
 Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
 
-Refer to [Using JHipster in production][] for more details.
-
 ## Testing
 
 To launch your application's tests, run:
@@ -58,49 +60,3 @@ Unit tests are run by [Karma][] and written with [Jasmine][]. They're located in
 
 UI end-to-end tests are powered by [Protractor][], which is built on top of WebDriverJS. They're located in `src/test/javascript/e2e`
 and can be run by starting Spring Boot in one terminal (`./gradlew bootRun`) and running the tests (`gulp itest`) in a second one.
-
-For more information, refer to the [Running tests page][].
-
-## Using Docker to simplify development (optional)
-
-You can use Docker to improve your JHipster development experience. A number of docker-compose configuration are available in the `src/main/docker` folder to launch required third party services.
-For example, to start a postgresql database in a docker container, run:
-
-    docker-compose -f src/main/docker/postgresql.yml up -d
-
-To stop it and remove the container, run:
-
-    docker-compose -f src/main/docker/postgresql.yml down
-
-You can also fully dockerize your application and all the services that it depends on.
-To achieve this, first build a docker image of your app by running:
-
-    ./gradlew bootRepackage -Pprod buildDocker
-
-Then run:
-
-    docker-compose -f src/main/docker/app.yml up -d
-
-For more information refer to [Using Docker and Docker-Compose][], this page also contains information on the docker-compose sub-generator (`yo jhipster:docker-compose`), which is able to generate docker configurations for one or several JHipster applications.
-
-## Continuous Integration (optional)
-
-To set up a CI environment, consult the [Setting up Continuous Integration][] page.
-
-[JHipster Homepage and latest documentation]: https://jhipster.github.io
-[JHipster 3.12.2 archive]: https://jhipster.github.io/documentation-archive/v3.12.2
-
-[Using JHipster in development]: https://jhipster.github.io/documentation-archive/v3.12.2/development/
-[Using Docker and Docker-Compose]: https://jhipster.github.io/documentation-archive/v3.12.2/docker-compose
-[Using JHipster in production]: https://jhipster.github.io/documentation-archive/v3.12.2/production/
-[Running tests page]: https://jhipster.github.io/documentation-archive/v3.12.2/running-tests/
-[Setting up Continuous Integration]: https://jhipster.github.io/documentation-archive/v3.12.2/setting-up-ci/
-
-
-[Node.js]: https://nodejs.org/
-[Bower]: http://bower.io/
-[Gulp]: http://gulpjs.com/
-[BrowserSync]: http://www.browsersync.io/
-[Karma]: http://karma-runner.github.io/
-[Jasmine]: http://jasmine.github.io/2.0/introduction.html
-[Protractor]: https://angular.github.io/protractor/
