@@ -48,7 +48,6 @@
         function getSessionsAndGo() {
             Sessions.getAll(function (result) {
                 vm.sessions = result;
-                console.log("Sending the following session:: ", _.last(vm.sessions).series);
                 $state.go('stacks', { session: _.last(vm.sessions).series });
                 $rootScope.$broadcast('authenticationSuccess');
             });

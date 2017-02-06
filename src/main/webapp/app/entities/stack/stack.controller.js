@@ -10,8 +10,6 @@
     function StackController ($timeout, $scope, $state, Stack, stacks, orderBy, Auth, session, Sessions) {
         var vm = this;
 
-        console.log("Stack Controller reloaded");
-
         vm.stack = {};
         vm.stacks = stacks;
 
@@ -30,7 +28,6 @@
         });
 
         function onControllerLoad() {
-            console.log("StackController loaded.");
 
             if (session) {
                 vm.stack['session'] = session;
@@ -40,7 +37,6 @@
                     $state.go('stacks', {session: vm.stack.session});
                 });
             }
-
         }
 
         function save () {
@@ -80,7 +76,6 @@
         }
 
         function dragStopCallback() {
-            console.log("Dragging stopped, deleting last one...");
             $state.go('stacks.delete', {id: _.last(vm.stacks).id});
         }
     }
